@@ -36,6 +36,11 @@ getSymbols(Symbols,
            auto.assign = TRUE,
            env = ENV.STOCK)
 
+getSymbols("NDAQ", 
+           from = "2013-01-01", to = Sys.Date(), 
+           auto.assign = TRUE)
+
+
 
 XTS.ADJUSTED <- do.call(merge, eapply(ENV.STOCK, Ad))
 XTS.ADJUSTED <- XTS.ADJUSTED[,sort(names(XTS.ADJUSTED))]
@@ -286,6 +291,11 @@ forecast(fit1) %>% plot
 
 fit1<- auto.arima(XTS.DRETURNS$GOOG)
 forecast(fit1) %>% plot
+
+
+my_ts = ts(cds,frequency = 260.25, start = c(2007,3,27))
+ms_de <- decompose(my_ts)
+plot(ms_de)
 
 
 
